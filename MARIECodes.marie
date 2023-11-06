@@ -1,0 +1,35 @@
+//	SIMPLE SUM TEST
+
+INPUT
+STORE X
+INPUT
+ADD X
+OUTPUT
+HALT
+
+X, DEC 0
+
+//	Code memory
+//
+//	{"0x5000", "0x2006", "0x5000", "0x3006", "0x6000", "0x7000", "0x0000"}
+
+//	SKIPCOND TEST
+
+INPUT
+SKIPCOND 400
+JUMP DiferenteDeZero
+JUMP IgualAZero
+
+IgualAZero, 		OUTPUT
+					HALT
+            
+DiferenteDeZero,	LOAD One
+					OUTPUT
+                    HALT
+
+One, DEC 1
+
+//	Code memory
+//
+//	{"0x5000", "0x8400", "0x9006", "0x9004", "0x6000",
+//	 "0x7000", "0x1009", "0x6000", "0x7000", "0x0001"}
