@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define MEMORY_SIZE 25
+#define MEMORY_SIZE 20
 
 string decToHex(int n)
 {
@@ -85,23 +85,24 @@ int main(){
             IN = 0,             //Input
             MAR = 0,            //Memory Address Register
             MBR = 0;            //Memory Buffer Register
-    string  IR = 0;             //Instruction Register
+    string  IR = "";            //Instruction Register
 
-    bool Halted = false;    //Halt flag
+    bool Halted = false;        //Halt flag
 
     string M[MEMORY_SIZE] = {"0x5000", "0x8400", "0x9006", "0x9004", "0x6000",
 	                         "0x7000", "0x1009", "0x6000", "0x7000", "0x0001"};
 
+
     //Fill the memory with 0x0000
 
-    for (int i = 7; i < MEMORY_SIZE; i++){
+    for (int i = 10; i < MEMORY_SIZE; i++){
         M[i] = "0x0000";
     }
 
 
     while(!Halted){
 
-        if (PC == MEMORY_SIZE){
+        if (PC >= MEMORY_SIZE){
             PC = 0;
         }
 
@@ -115,7 +116,6 @@ int main(){
         MAR = PC;
         MBR = hexToDec(M[MAR]);
         IR = decToHex(MBR);
-        cout << IR << endl;
         PC++;
 
         //  Execution Cycle
@@ -180,13 +180,17 @@ int main(){
         case 8:
         //Skipcond
             if (skipValue == "0"){
-                if (AC < 0) PC++; 
+                if (AC < 0){
+                    PC++;
+                }
             } else if (skipValue == "4"){
-                if (AC == 0) PC++;
+                if (AC == 0){
+                    PC++;
+                }
             } else if (skipValue == "8"){
-                if (AC > 0) PC++;
-            } else {
-                cout << "Operação não reconhecida" << endl;
+                if (AC > 0){
+                    PC++;
+                }
             }
             break;
         case 9:
