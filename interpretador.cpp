@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define MEMORY_SIZE 20
+#define MEMORY_SIZE 60
 
 string decToHex(int n)
 {
@@ -89,13 +89,19 @@ int main(){
 
     bool Halted = false;        //Halt flag
 
-    string M[MEMORY_SIZE] = {"0x5000", "0x8400", "0x9006", "0x9004", "0x6000",
-	                         "0x7000", "0x1009", "0x6000", "0x7000", "0x0001"};
+    string M[MEMORY_SIZE] = {
+                            "0xA000", "0x202D", "0x5000", "0x2029", "0x5000", "0x202A", "0x102A", "0x8000", "0x9011", "0x402A",
+                            "0x402A", "0x202A", "0xA000", "0x302B", "0x202C", "0xA000", "0x9017", "0xA000", "0x202C", "0x102A",
+                            "0x8400", "0x9017", "0x9026", "0x102D", "0x3029", "0x202D", "0x102A", "0x402B", "0x202A", "0x8400",
+                            "0x9017", "0x102C", "0x8800", "0x9026", "0x102D", "0x402D", "0x402D", "0x202D", "0x102D", "0x6000",
+                            "0x7000", "0x0000", "0x0000", "0x0001", "0x0000", "0x0000"
+                            };
 
+    int commandCount = 46;
 
     //Fill the memory with 0x0000
 
-    for (int i = 10; i < MEMORY_SIZE; i++){
+    for (int i = commandCount; i < MEMORY_SIZE; i++){
         M[i] = "0x0000";
     }
 
@@ -219,7 +225,6 @@ int main(){
             cout << "Operação não reconhecida" << endl;
             break;
         }
-        
     }
 
     // cout << "Memória final: " << endl;
